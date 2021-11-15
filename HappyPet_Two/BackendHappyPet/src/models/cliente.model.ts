@@ -9,6 +9,42 @@ export class Cliente extends Entity {
   })
   idCliente?: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  nombre: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  apellidos: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  telefono: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  correo: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  ciudad: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  direccion: string;
+
 
   constructor(data?: Partial<Cliente>) {
     super(data);

@@ -6,7 +6,7 @@ const config = {
   connector: 'mongodb',
   url: 'mongodb+srv://AmericanRocker:AmericanRocker1998@cluster0.j505h.mongodb.net/HappyPet_TwoBD?retryWrites=true&w=majority',
   host: '',
-  port: 0,
+  port: 27017,
   user: '',
   password: '',
   database: '',
@@ -18,8 +18,10 @@ const config = {
 // gracefully. The `stop()` method is inherited from `juggler.DataSource`.
 // Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
 @lifeCycleObserver('datasource')
-export class MongoDbHappyPetTwoDataSource extends juggler.DataSource
-  implements LifeCycleObserver {
+export class MongoDbHappyPetTwoDataSource
+  extends juggler.DataSource
+  implements LifeCycleObserver
+{
   static dataSourceName = 'MongoDbHappyPetTwo';
   static readonly defaultConfig = config;
 
