@@ -8,3 +8,8 @@ export * from './producto.repository';
 export * from './proveedor.repository';
 export * from './servicio.repository';
 export * from './solicitud.repository';
+export * from './detalles-pedido-p.repository';
+export * from './detalles-pedido-s.repository';
+export * from './detalles-visita.repository';
+export * from './pago-planes.repository';
+export * from './visita.repository';
