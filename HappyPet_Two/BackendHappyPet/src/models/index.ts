@@ -8,3 +8,8 @@ export * from './funcionario.model';
 export * from './mascota.model';
 export * from './plan.model';
 export * from './solicitud.model';
+export * from './visita.model';
+export * from './detalles-visita.model';
+export * from './pago-planes.model';
+export * from './detalles-pedido-p.model';
+export * from './detalles-pedido-s.model';
