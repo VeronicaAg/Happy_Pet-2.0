@@ -1,16 +1,22 @@
-import {inject} from '@loopback/core';
-import {DefaultCrudRepository} from '@loopback/repository';
+import {inject, Getter} from '@loopback/core';
+import {DefaultCrudRepository, repository, BelongsToAccessor} from '@loopback/repository';
 import {MongoDbHappyPetTwoDataSource} from '../datasources';
-import {Mascota, MascotaRelations} from '../models';
+import {Mascota, MascotaRelations, Cliente} from '../models';
+import {ClienteRepository} from './cliente.repository';
 
 export class MascotaRepository extends DefaultCrudRepository<
   Mascota,
   typeof Mascota.prototype.idMascota,
   MascotaRelations
 > {
+
+  public readonly cliente: BelongsToAccessor<Cliente, typeof Mascota.prototype.idMascota>;
+
   constructor(
-    @inject('datasources.MongoDbHappyPetTwo') dataSource: MongoDbHappyPetTwoDataSource,
+    @inject('datasources.MongoDbHappyPetTwo') dataSource: MongoDbHappyPetTwoDataSource, @repository.getter('ClienteRepository') protected clienteRepositoryGetter: Getter<ClienteRepository>,
   ) {
     super(Mascota, dataSource);
+    this.cliente = this.createBelongsToAccessorFor('cliente', clienteRepositoryGetter,);
+    this.registerInclusionResolver('cliente', this.cliente.inclusionResolver);
   }
 }
