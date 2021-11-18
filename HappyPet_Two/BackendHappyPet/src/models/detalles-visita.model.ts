@@ -4,7 +4,7 @@ import {Visita} from './visita.model';
 @model()
 export class DetallesVisita extends Entity {
   @property({
-    type: 'string',
+    type: 'string',             
     id: true,
     generated: true,
   })
