@@ -27,6 +27,16 @@ export class DetallesPedidoP extends Entity {
   })
   descripcion: string;
 
+  @property({
+    type: 'string',
+  })
+  pedidoProductoId?: string;
+
+  @property({
+    type: 'string',
+  })
+  productoId?: string;
+
   constructor(data?: Partial<DetallesPedidoP>) {
     super(data);
   }

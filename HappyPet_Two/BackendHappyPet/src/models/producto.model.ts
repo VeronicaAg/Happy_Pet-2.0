@@ -1,5 +1,7 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
 import {Proveedor} from './proveedor.model';
+import {PedidoProducto} from './pedido-producto.model';
+import {DetallesPedidoP} from './detalles-pedido-p.model';
 
 @model()
 export class Producto extends Entity {
@@ -30,6 +32,9 @@ export class Producto extends Entity {
 
   @belongsTo(() => Proveedor)
   proveedorId: string;
+
+  @hasMany(() => PedidoProducto, {through: {model: () => DetallesPedidoP}})
+  pedidoProductos: PedidoProducto[];
 
   constructor(data?: Partial<Producto>) {
     super(data);

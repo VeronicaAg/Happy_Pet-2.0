@@ -21,6 +21,15 @@ export class PagoPlanes extends Entity {
   })
   fecha: string;
 
+  @property({
+    type: 'string',
+  })
+  mascotaId?: string;
+
+  @property({
+    type: 'string',
+  })
+  planId?: string;
 
   constructor(data?: Partial<PagoPlanes>) {
     super(data);
