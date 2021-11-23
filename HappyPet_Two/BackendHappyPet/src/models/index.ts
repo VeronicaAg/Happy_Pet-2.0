@@ -13,3 +13,4 @@ export * from './detalles-visita.model';
 export * from './pago-planes.model';
 export * from './detalles-pedido-p.model';
 export * from './detalles-pedido-s.model';
+export * from './credenciales.model';

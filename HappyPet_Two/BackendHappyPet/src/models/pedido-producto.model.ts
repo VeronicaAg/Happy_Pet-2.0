@@ -40,7 +40,7 @@ export class PedidoProducto extends Entity {
     type: 'string',
     required: true,
   })
-  obcervaciones: string;
+  observaciones: string;
 
   @belongsTo(() => Cliente)
   clienteId: string;
