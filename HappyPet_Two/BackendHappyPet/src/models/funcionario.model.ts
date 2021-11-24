@@ -65,6 +65,12 @@ export class Funcionario extends Entity {
   })
   credencial: string;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  clave: string;
+
   @hasMany(() => Mascota, {through: {model: () => Visita}})
   mascotas: Mascota[];
 

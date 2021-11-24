@@ -28,13 +28,13 @@ export class AutenticacionService {
     return claveCifrada;
   }
 
-  IdentificarPersona(usuario: string, clave: string) {
+  IdentificarUsuario(usuario: string, clave: string) {
     try
     {
-      let c = this.clienteRepository.findOne({where: {correo: usuario, clave: clave}});
-      if (c)
+      let u = this.clienteRepository.findOne({where: {correo: usuario, clave: clave}});
+      if (u)
       {
-        return c;
+        return u;
       }
       return false;
     } catch {

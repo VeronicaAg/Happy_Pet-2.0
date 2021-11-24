@@ -1,3 +1,4 @@
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -17,13 +18,18 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
+import {__await} from 'tslib';
 import {Funcionario} from '../models';
 import {FuncionarioRepository} from '../repositories';
+import {AutenticacionService} from '../services';
+const fetch = require('node-fetch');
 
 export class FuncionarioController {
   constructor(
     @repository(FuncionarioRepository)
     public funcionarioRepository : FuncionarioRepository,
+    @service(AutenticacionService)
+    public servicioAutenticacion: AutenticacionService
   ) {}
 
   @post('/funcionarios')
@@ -44,7 +50,33 @@ export class FuncionarioController {
     })
     funcionario: Omit<Funcionario, 'idFuncionario'>,
   ): Promise<Funcionario> {
-    return this.funcionarioRepository.create(funcionario);
+    let clave = this.servicioAutenticacion.GenerarClave();
+    let claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+    funcionario.clave = claveCifrada;
+    let f = await this.funcionarioRepository.create(funcionario);
+
+    //Notificar al usuario por correo
+    // let destino = funcionario.correo;
+    // let asunto = 'Registro en la Plaraforma';
+    // let contenido = `Hola ${funcionario.nombre} ${funcionario.apellidos}, su nombre usuario es: ${funcionario.correo} y su contraseña es ${clave}`;
+    // fetch (`http://127.0.0.1:5000/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
+    // .then((data:any)=>{
+    //   console.log(data);
+    // })
+    // return f;
+
+    //Notificar al usuario por sms
+    let destinoT = funcionario.telefono;
+    let destinoC = funcionario.correo;
+    let asunto = 'Registro en la Plaraforma';
+    let contenido =  `Hola ${funcionario.nombre} ${funcionario.apellidos}, su nombre usuario es: ${funcionario.correo} y su contraseña es ${clave}`;
+    fetch (`http://127.0.0.1:5000/sms?telefono=${destinoT}&mensaje=${contenido}`)
+    fetch (`http://127.0.0.1:5000/envio-correo?correo_destino=${destinoC}&asunto=${asunto}&contenido=${contenido}`)
+    .then((data:any)=>{
+      console.log(data);
+    })
+    return f;
+
   }
 
   @get('/funcionarios/count')
