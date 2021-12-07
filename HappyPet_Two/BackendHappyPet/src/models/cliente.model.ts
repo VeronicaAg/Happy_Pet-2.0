@@ -28,6 +28,12 @@ export class Cliente extends Entity {
     type: 'string',
     required: true,
   })
+  documento: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
   telefono: string;
 
   @property({

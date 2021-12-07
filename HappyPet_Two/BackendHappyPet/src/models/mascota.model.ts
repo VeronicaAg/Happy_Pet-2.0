@@ -4,6 +4,7 @@ import {Plan} from './plan.model';
 import {PagoPlanes} from './pago-planes.model';
 import {Funcionario} from './funcionario.model';
 import {Visita} from './visita.model';
+import {Solicitud} from './solicitud.model';
 
 @model()
 export class Mascota extends Entity {
@@ -44,6 +45,12 @@ export class Mascota extends Entity {
   })
   genero: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  imagen: string;
+
   @belongsTo(() => Cliente)
   clienteId: string;
 
@@ -52,6 +59,9 @@ export class Mascota extends Entity {
 
   @hasMany(() => Funcionario, {through: {model: () => Visita}})
   funcionarios: Funcionario[];
+
+  @hasMany(() => Solicitud)
+  solicituds: Solicitud[];
 
   constructor(data?: Partial<Mascota>) {
     super(data);

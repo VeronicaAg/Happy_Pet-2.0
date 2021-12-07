@@ -28,3 +28,6 @@ export * from './producto.controller';
 export * from './solicitud.controller';
 export * from './visitas.controller';
 export * from './cliente.controller';
+export * from './mascota-solicitud.controller';
+export * from './solicitud-mascota.controller';
+export * from './mascota.controller';

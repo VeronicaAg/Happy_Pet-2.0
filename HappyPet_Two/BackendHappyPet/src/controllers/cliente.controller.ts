@@ -19,7 +19,8 @@ import {
   response,
   HttpErrors,
 } from '@loopback/rest';
-import {Cliente, Credenciales} from '../models';
+import {Llaves} from '../config/llaves';
+import {Cliente, Usuario} from '../models';
 import {ClienteRepository} from '../repositories';
 import {AutenticacionService} from '../services';
 const fetch = require('node-fetch');
@@ -37,17 +38,17 @@ export class ClienteController {
   @post("/identificarCliente", {
     responses: {
       '200': {
-        description: "Identificacion de usuarios"
+        description: "Identificacion de clientes"
       }
     }
   })
   async identificarCliente(
-    @requestBody() credenciales: Credenciales
+    @requestBody() usuario: Usuario
   ) {
-    let c = await this.servicioAutenticacion.IdentificarUsuario(credenciales.usuario, credenciales.clave);
+    let c = await this.servicioAutenticacion.IdentificarCliente(usuario.usuario, usuario.clave);
     if (c)
     {
-      let token = this.servicioAutenticacion.GenerarTokenJWT(c);
+      let token = this.servicioAutenticacion.GenerarTokenJWTC(c);
       return{
         datos: {
           nombre: c.nombre,
@@ -91,7 +92,7 @@ export class ClienteController {
     let destino = cliente.correo;
     let asunto = 'Registro en la Plataforma';
     let contenido = `Hola ${cliente.nombre}, su nombre usuario es: ${cliente.correo} y su contraseña es ${clave}`;
-    fetch(`http://127.0.0.1:5000/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
+    fetch(`${Llaves.urlServicioNotificaciones}/envio-correo?correo_destino=${destino}&asunto=${asunto}&contenido=${contenido}`)
       .then((data: any) => {
         console.log(data);
       })

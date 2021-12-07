@@ -1,4 +1,4 @@
-import {service} from '@loopback/core';
+import { service } from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -17,25 +17,53 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {__await} from 'tslib';
-import {Funcionario} from '../models';
-import {FuncionarioRepository} from '../repositories';
-import {AutenticacionService} from '../services';
+import { Funcionario, Usuario } from '../models';
+import { FuncionarioRepository } from '../repositories';
+import { AutenticacionService } from '../services';
 const fetch = require('node-fetch');
 
 export class FuncionarioController {
   constructor(
     @repository(FuncionarioRepository)
-    public funcionarioRepository : FuncionarioRepository,
+    public funcionarioRepository: FuncionarioRepository,
     @service(AutenticacionService)
     public servicioAutenticacion: AutenticacionService
-  ) {}
+  ) { }
+
+  @post("/identificarFuncionario", {
+    responses: {
+      '200': {
+        description: "Identificacion de funcionarios"
+      }
+    }
+  })
+  async identificarFuncionario(
+    @requestBody() usuario: Usuario
+  ){
+    let f = await this.servicioAutenticacion.IdentificarFuncionario(usuario.usuario, usuario.clave);
+    if(f)
+    {
+      let token = this.servicioAutenticacion.GenerarTokenJWTF(f);
+      return{
+        datos: {
+          nombre: f.nombre,
+          correo: f.apellidos,
+          id: f.idFuncionario
+        },
+        tk: token
+      }
+    }else
+    {
+      throw new HttpErrors[401]("Datos Inválidos")
+    }
+  }
 
   @post('/funcionarios')
   @response(200, {
     description: 'Funcionario model instance',
-    content: {'application/json': {schema: getModelSchemaRef(Funcionario)}},
+    content: { 'application/json': { schema: getModelSchemaRef(Funcionario) } },
   })
   async create(
     @requestBody({
@@ -69,12 +97,12 @@ export class FuncionarioController {
     let destinoT = funcionario.telefono;
     let destinoC = funcionario.correo;
     let asunto = 'Registro en la Plaraforma';
-    let contenido =  `Hola ${funcionario.nombre} ${funcionario.apellidos}, su nombre usuario es: ${funcionario.correo} y su contraseña es ${clave}`;
-    fetch (`http://127.0.0.1:5000/sms?telefono=${destinoT}&mensaje=${contenido}`)
-    fetch (`http://127.0.0.1:5000/envio-correo?correo_destino=${destinoC}&asunto=${asunto}&contenido=${contenido}`)
-    .then((data:any)=>{
-      console.log(data);
-    })
+    let contenido = `Hola ${funcionario.nombre} ${funcionario.apellidos}, su nombre usuario es: ${funcionario.correo} y su contraseña es ${clave}`;
+    fetch(`http://127.0.0.1:5000/sms?telefono=${destinoT}&mensaje=${contenido}`)
+    fetch(`http://127.0.0.1:5000/envio-correo?correo_destino=${destinoC}&asunto=${asunto}&contenido=${contenido}`)
+      .then((data: any) => {
+        console.log(data);
+      })
     return f;
 
   }
@@ -82,7 +110,7 @@ export class FuncionarioController {
   @get('/funcionarios/count')
   @response(200, {
     description: 'Funcionario model count',
-    content: {'application/json': {schema: CountSchema}},
+    content: { 'application/json': { schema: CountSchema } },
   })
   async count(
     @param.where(Funcionario) where?: Where<Funcionario>,
@@ -97,7 +125,7 @@ export class FuncionarioController {
       'application/json': {
         schema: {
           type: 'array',
-          items: getModelSchemaRef(Funcionario, {includeRelations: true}),
+          items: getModelSchemaRef(Funcionario, { includeRelations: true }),
         },
       },
     },
@@ -111,13 +139,13 @@ export class FuncionarioController {
   @patch('/funcionarios')
   @response(200, {
     description: 'Funcionario PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
+    content: { 'application/json': { schema: CountSchema } },
   })
   async updateAll(
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Funcionario, {partial: true}),
+          schema: getModelSchemaRef(Funcionario, { partial: true }),
         },
       },
     })
@@ -132,13 +160,13 @@ export class FuncionarioController {
     description: 'Funcionario model instance',
     content: {
       'application/json': {
-        schema: getModelSchemaRef(Funcionario, {includeRelations: true}),
+        schema: getModelSchemaRef(Funcionario, { includeRelations: true }),
       },
     },
   })
   async findById(
     @param.path.string('id') id: string,
-    @param.filter(Funcionario, {exclude: 'where'}) filter?: FilterExcludingWhere<Funcionario>
+    @param.filter(Funcionario, { exclude: 'where' }) filter?: FilterExcludingWhere<Funcionario>
   ): Promise<Funcionario> {
     return this.funcionarioRepository.findById(id, filter);
   }
@@ -152,7 +180,7 @@ export class FuncionarioController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Funcionario, {partial: true}),
+          schema: getModelSchemaRef(Funcionario, { partial: true }),
         },
       },
     })

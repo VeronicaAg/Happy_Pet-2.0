@@ -14,3 +14,4 @@ export * from './pago-planes.model';
 export * from './detalles-pedido-p.model';
 export * from './detalles-pedido-s.model';
 export * from './credenciales.model';
+export * from './usuario.model';
