@@ -21,15 +21,15 @@ import {
 } from '@loopback/rest';
 import { Funcionario, Usuario } from '../models';
 import { FuncionarioRepository } from '../repositories';
-import { AutenticacionService } from '../services';
+import {AutenticacionFuncionarioService  } from '../services';
 const fetch = require('node-fetch');
 
 export class FuncionarioController {
   constructor(
     @repository(FuncionarioRepository)
     public funcionarioRepository: FuncionarioRepository,
-    @service(AutenticacionService)
-    public servicioAutenticacion: AutenticacionService
+    @service(AutenticacionFuncionarioService )
+    public servicioAutenticacion: AutenticacionFuncionarioService 
   ) { }
 
   @post("/identificarFuncionario", {

@@ -1,0 +1,53 @@
+<a routerLink="/administracion/crear-funcionario" class="btn">Registrar Funcionario</a>
+<table class="table responsive">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Telefono</th>
+            <th>Direccion</th>
+            <th>Correo</th>
+            <th>Departamento</th>
+            <th>Cargo</th>
+            <th>Fecha de Inicio</th>
+            <th>Credencial </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of listadoRegistros">
+            <td>
+                {{ p.nombre }}
+            </td>
+            <td>
+                {{ p.apellidos }}
+            </td>
+            <td>
+                {{ p.telefono }}
+            </td>
+            <td>
+                {{ p.direccion }}
+            </td>
+            <td>
+                {{ p.correo }}
+            </td>
+            <td>
+                {{ p.departamento }}
+            </td>
+            <td>
+                {{ p.cargo }}
+            </td>
+            <td>
+                {{ p.fechaInicio }}
+            </td>
+            <td>
+                {{ p.credencial }}
+            </td>
+            <td>
+                <a routerLink="/administracion/editar-funcionario/{{ p.idFuncionario }}" class="btn">Editar </a>
+            </td>
+            <td>
+                <a  routerLink="/administracion/eliminar-funcionario/{{ p.idFuncionario }}" class="btn">Eliminar </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

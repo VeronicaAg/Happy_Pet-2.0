@@ -1,0 +1,49 @@
+<h2 class="center-align">Seguro que desea eliminar a:</h2>
+<div  class="row">
+    <article  class="col s6 offset-s3 ">
+        <form [formGroup]="fgValidador" (ngSubmit)="DeleteFuncionario()" action="formulario-contacto.php" method="POST">
+            <input type="hidden" formControlName="idFuncionario">
+            <div class="input-field">
+                <label for="nombre"  class="active">Nombre del Funcionario</label>
+                <input formControlName="nombre" type="text" name="nombre" readonly>
+            </div>
+            <div class="input-field">
+                <label for="apellidos"  class="active">Apellidos</label>
+                <input formControlName="apellidos" type="text" name="apellidos" readonly>
+            </div>
+            <div class="input-field">
+                <label for="telefono"  class="active">Numero de Telefono</label>
+                <input formControlName="telefono" type="text" name="telefono" readonly>
+            </div>
+            <div class="input-field">
+                <label for="direccion"  class="active">Direccion</label>
+                <input formControlName="direccion" type="text" name="direccion" readonly>
+            </div>
+            <div class="input-field">
+                <label for="correo"  class="active">Correo Electrónico</label>
+                <input formControlName="correo" type="email" name="correo" readonly>
+            </div>
+            <div class="input-field">
+                <label for="departamento"  class="active">Departamento</label>
+                <input formControlName="departamento" type="text" name="departamento" readonly>
+            </div>
+            <div class="input-field">
+                <label for="cargo"  class="active">Cargo a ejercer</label>
+                <input formControlName="cargo" type="text" name="cargo" readonly>
+            </div>
+            <div class="input-field">
+                <label for="fechaInicio" class="active">Fecha Inicio de trabajo</label>
+                <input formControlName="fechaInicio"  type="text" name="fechaInicio" >
+            </div>
+            <div class="input-field">
+                <label for="credencial"  class="active">Credencial</label>
+                <input formControlName="credencial" type="text" name="credencial" readonly>
+            </div>
+
+            <p class="center-align">
+                <button style="margin: 10px" class="waves-effect waves-light btn" type="submit"><i class="material-icons right">delete</i>Eliminar</button>
+                <a  routerLink="/administracion/listar-funcionarios" class="btn"><i class="material-icons right ">cancel</i>Cancelar</a>
+            </p>
+        </form>
+    </article>
+</div>

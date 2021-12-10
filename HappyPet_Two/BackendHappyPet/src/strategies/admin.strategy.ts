@@ -3,13 +3,13 @@ import {service} from '@loopback/core';
 import {HttpErrors, Request} from '@loopback/rest';
 import {UserProfile} from '@loopback/security';
 import parseBearerToken from 'parse-bearer-token';
-import {AutenticacionService} from '../services';
+import {AutenticacionFuncionarioService } from '../services';
 export class EstrategiaAdministrador implements AuthenticationStrategy {
   name: string = 'admin';
 
   constructor(
-    @service(AutenticacionService)
-    public servicioAutenticacion: AutenticacionService
+    @service(AutenticacionFuncionarioService )
+    public servicioAutenticacion: AutenticacionFuncionarioService 
   ) { }
 
   async authenticate(request: Request): Promise<UserProfile | undefined> {

@@ -1,0 +1,26 @@
+<div  class="row">
+    <h3 class="center-align">Crear Productos</h3>
+    <article  class="col s6 offset-s3">
+        <form [formGroup]="fgValidador" (ngSubmit)="GuardarProducto()" action="formulario-contacto.php" method="POST">
+            <div class="input-field">
+                <label for="nombreProducto">Nombre del Producto</label>
+                <input formControlName="nombreProducto" type="text" name="nombreProducto" required>
+            </div>
+            <div class="input-field">
+                <label for="descripcionProducto">Descripción</label>
+                <input formControlName="descripcionProducto" type="text" name="descripcionProducto" required>
+            </div>
+            <div class="input-field">
+                <label for="precioProducto">Precio</label>
+                <input formControlName="precioProducto" type="text" name="precioProducto" required>
+            </div>
+            <div class="input-field">
+                <label for="proveedores">Proveedores</label>
+                <input formControlName="proveedores" type="text" name="proveedores" required>
+            </div>
+            <p class="center-align">
+                <button [disabled]="!fgValidador.valid" class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i> enviar</button>
+            </p>
+        </form>
+    </article>
+</div>

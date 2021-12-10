@@ -1,0 +1,42 @@
+<h2 class="center-align" >Seguro que desea eliminar a:</h2>
+<div  class="row">
+    <article  class="col s6 offset-s3">
+        <form [formGroup]="fgValidador" (ngSubmit)="DeleteCliente()" action="formulario-contacto.php" method="POST" >
+            <input type="hidden" formControlName="idCliente">
+            <div class="input-field">
+                <label for="nombre" class="active">Nombre </label>
+                <input formControlName="nombre" type="text" name="nombre" readonly>
+            </div>
+            <div class="input-field">
+                <label for="apellidos" class="active">Apellidos</label>
+                <input formControlName="apellidos" type="text" name="apellidos" readonly>
+            </div>
+            <div class="input-field">
+                <label for="documento" class="active">Documento</label>
+                <input formControlName="documento" type="text" name="documento" readonly>
+            </div>
+            <div class="input-field">
+                <label for="telefono" class="active">Numero de Telefono</label>
+                <input formControlName="telefono" type="text" name="telefono" readonly>
+            </div>
+            <div class="input-field">
+                <label for="direccion" class="active">Direccion</label>
+                <input formControlName="direccion" type="text" name="direccion" readonly>
+            </div>
+            <div class="input-field">
+                <label for="correo" class="active">Correo Electrónico</label>
+                <input formControlName="correo" type="email" name="correo" readonly>
+            </div>
+            <div class="input-field">
+                <label for="ciudad" class="active">Ciudad</label>
+                <input formControlName="ciudad" type="text" name="ciudad"readonly>
+            </div>
+            <p class="center-align">
+                <button style="margin: 10px" class="waves-effect waves-light btn" type="submit"><i class="material-icons right ">delete</i> Eliminar</button>
+                <a  routerLink="/cliente/listar-clientes/" class="btn"><i class="material-icons right ">cancel</i>Cancelar</a>
+            </p>
+           
+        </form>
+
+    </article>
+</div>

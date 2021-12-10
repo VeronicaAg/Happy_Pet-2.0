@@ -1,0 +1,41 @@
+<div  class="row">
+    <h3 class="center-align">Editar Clientes</h3>
+    <article  class="col s6 offset-s3">
+        <form [formGroup]="fgValidador" (ngSubmit)="EditarCliente()" action="formulario-contacto.php" method="POST">
+            <input type="hidden" formControlName="idCliente">
+            <div class="input-field">
+                <label for="nombre" class="active">Nombre </label>
+                <input formControlName="nombre" type="text" name="nombre" required>
+            </div>
+            <div class="input-field">
+                <label for="apellidos" class="active">Apellidos</label>
+                <input formControlName="apellidos" type="text" name="apellidos" required>
+            </div>
+            <div class="input-field">
+                <label for="documento" class="active">Documento</label>
+                <input formControlName="documento" type="text" name="documento" required>
+            </div>
+            <div class="input-field">
+                <label for="telefono" class="active">Numero de Telefono</label>
+                <input formControlName="telefono" type="text" name="telefono" required>
+            </div>
+            <div class="input-field">
+                <label for="direccion" class="active">Direccion</label>
+                <input formControlName="direccion" type="text" name="direccion" required>
+            </div>
+            <div class="input-field">
+                <label for="correo" class="active">Correo Electrónico</label>
+                <input formControlName="correo" type="email" name="correo" required>
+            </div>
+            <div class="input-field">
+                <label for="ciudad" class="active">Ciudad</label>
+                <input formControlName="ciudad" type="text" name="ciudad" required>
+            </div>
+
+            <p class="center-align">
+                <button [disabled]="!fgValidador.valid" class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i> enviar</button>
+            </p>
+        </form>
+    </article>
+</div>
+

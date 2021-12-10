@@ -1,3 +1,4 @@
+import { authenticate } from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -20,6 +21,7 @@ import {
 import {Plan} from '../models';
 import {PlanRepository} from '../repositories';
 
+@authenticate("admin")
 export class PlanController {
   constructor(
     @repository(PlanRepository)
@@ -58,6 +60,7 @@ export class PlanController {
     return this.planRepository.count(where);
   }
 
+  @authenticate.skip()
   @get('/plans')
   @response(200, {
     description: 'Array of Plan model instances',
@@ -75,6 +78,7 @@ export class PlanController {
   ): Promise<Plan[]> {
     return this.planRepository.find(filter);
   }
+
 
   @patch('/plans')
   @response(200, {
@@ -95,6 +99,7 @@ export class PlanController {
     return this.planRepository.updateAll(plan, where);
   }
 
+  @authenticate.skip()
   @get('/plans/{id}')
   @response(200, {
     description: 'Plan model instance',

@@ -30,6 +30,12 @@ export class Producto extends Entity {
   })
   precioProducto: number;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  proveedores: string;
+
   @belongsTo(() => Proveedor)
   proveedorId: string;
 

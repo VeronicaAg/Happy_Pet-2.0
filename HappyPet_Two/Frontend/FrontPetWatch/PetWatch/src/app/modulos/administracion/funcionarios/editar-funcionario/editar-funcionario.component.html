@@ -1,0 +1,48 @@
+<div  class="row">
+    <h3 class="center-align">Actualizar Funcionario</h3>
+    <article  class="col s6 offset-s3">
+        <form [formGroup]="fgValidador" (ngSubmit)="EditarFuncionario()" action="formulario-contacto.php" method="POST">
+            <input type="hidden" formControlName="idFuncionario">
+            <div class="input-field">
+                <label for="nombre"  class="active">Nombre del Funcionario</label>
+                <input formControlName="nombre" type="text" name="nombre" required>
+            </div>
+            <div class="input-field">
+                <label for="apellidos"  class="active">Apellidos</label>
+                <input formControlName="apellidos" type="text" name="apellidos" required>
+            </div>
+            <div class="input-field">
+                <label for="telefono"  class="active">Numero de Telefono</label>
+                <input formControlName="telefono" type="text" name="telefono" required>
+            </div>
+            <div class="input-field">
+                <label for="direccion"  class="active">Direccion</label>
+                <input formControlName="direccion" type="text" name="direccion" required>
+            </div>
+            <div class="input-field">
+                <label for="correo"  class="active">Correo Electrónico</label>
+                <input formControlName="correo" type="email" name="correo" required>
+            </div>
+            <div class="input-field">
+                <label for="departamento"  class="active">Departamento</label>
+                <input formControlName="departamento" type="text" name="departamento" required>
+            </div>
+            <div class="input-field">
+                <label for="cargo"  class="active">Cargo a ejercer</label>
+                <input formControlName="cargo" type="text" name="cargo" required>
+            </div>
+            <div class="input-field">
+                <label for="fechaInicio" class="active">Fecha Inicio de trabajo</label>
+                <input formControlName="fechaInicio"  type="text" name="fechaInicio" >
+            </div>
+            <div class="input-field">
+                <label for="credencial"  class="active">Credencial</label>
+                <input formControlName="credencial" type="text" name="credencial" required>
+            </div>
+
+            <p class="center-align">
+                <button [disabled]="!fgValidador.valid" class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i> enviar</button>
+            </p>
+        </form>
+    </article>
+</div>

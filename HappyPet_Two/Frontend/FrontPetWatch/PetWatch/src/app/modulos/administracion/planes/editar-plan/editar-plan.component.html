@@ -1,0 +1,27 @@
+<div  class="row">
+    <h3 class="center-align">Editar Plan</h3>
+    <article  class="col s6 offset-s3">
+        <form [formGroup]="fgValidador" (ngSubmit)="EditarPlan()" action="formulario-contacto.php" method="POST">
+            <input type="hidden" formControlName="idPlan">
+            <div class="input-field">
+                <label for="nombrePlan" class="active">Nombre del Plan</label>
+                <input formControlName="nombrePlan" type="text" name="nombrePlan" required>
+            </div>
+            <div class="input-field">
+                <label for="descripcion" class="active">Descripción</label>
+                <input formControlName="descripcion" type="text" name="descripcion" required>
+            </div>
+            <div class="input-field">
+                <label for="precioPlan" class="active">Precio</label>
+                <input formControlName="precioPlan" type="text" name="precioPlan" required>
+            </div>
+            <div class="input-field">
+                <label for="proveedores" class="active">Proveedor</label>
+                <input formControlName="proveedores" type="text" name="proveedores" required>
+            </div>
+            <p class="center-align">
+                <button [disabled]="!fgValidador.valid" class="waves-effect waves-light btn" type="submit"><i class="material-icons right">send</i> enviar</button>
+            </p>
+        </form>
+    </article>
+</div>

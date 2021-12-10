@@ -29,6 +29,12 @@ export class Plan extends Entity {
   })
   precioPlan: number;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  proveedores: string;
+
   @hasMany(() => Mascota, {through: {model: () => PagoPlanes}})
   mascotas: Mascota[];
 

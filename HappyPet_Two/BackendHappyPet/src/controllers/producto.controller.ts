@@ -62,6 +62,7 @@ export class ProductoController {
     return this.productoRepository.count(where);
   }
 
+  @authenticate.skip()
   @get('/productos')
   @response(200, {
     description: 'Array of Producto model instances',
@@ -99,6 +100,7 @@ export class ProductoController {
     return this.productoRepository.updateAll(producto, where);
   }
 
+  @authenticate.skip()
   @get('/productos/{id}')
   @response(200, {
     description: 'Producto model instance',
