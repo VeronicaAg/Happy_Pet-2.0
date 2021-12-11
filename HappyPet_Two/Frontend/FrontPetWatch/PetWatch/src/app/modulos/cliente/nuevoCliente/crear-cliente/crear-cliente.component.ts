@@ -50,7 +50,7 @@ export class CrearClienteComponent implements OnInit {
 
 
     this.servicioCliente.CrearCliente(p).subscribe((datos: ModeloCliente)=>{
-      alert("Has sido registrado Corresctamente");
+      alert("Has sido registrado Correctamente");
       this.router.navigate(["/inicio"]);
     },(error: any)=> {
       alert("Error al registrarse")

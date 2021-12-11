@@ -9,8 +9,11 @@
       <li *ngIf="seInicioSesion"><a routerLink="/cliente/listar-clientes">Clientes</a></li>
       <li *ngIf="seInicioSesion"><a routerLink="/seguridad/cambioClave">Cambiar Clave</a></li>
       <li *ngIf="!seInicioSesion"><a routerLink="/cliente/registrar">Registrarse</a></li>
-      <li *ngIf="!seInicioSesion"><a routerLink="/seguridad/identificar">Iniciar Sesión</a></li>
+      <li *ngIf="!seInicioSesion"><a routerLink="/seguridad/identificar">Administrador</a></li>
       <li *ngIf="seInicioSesion"><a routerLink="/seguridad/cerrarSesion">Cerrar Sesión</a></li>
+      <li *ngIf="!seInicioSesion"><a routerLink="/seguridad/inicio-sesion">Clientes</a></li>
+      <li *ngIf=""><a routerLink="/seguridad/cerrarSesion">Cerrar Sesión</a></li>
+      
     </ul>
   </div>
 </nav>
@@ -22,6 +25,9 @@
   <li *ngIf="seInicioSesion"><a routerLink="/cliente/listar-clientes">Clientes</a></li>
   <li *ngIf="seInicioSesion"><a routerLink="/seguridad/cambioClave">Cambiar Clave</a></li>
   <li *ngIf="!seInicioSesion"><a routerLink="/cliente/registrar">Registrarse</a></li>
-  <li *ngIf="!seInicioSesion"><a routerLink="/seguridad/identificar">Iniciar Sesión</a></li>
+  <li *ngIf="!seInicioSesion"><a routerLink="/seguridad/identificar">Administrador</a></li>
   <li *ngIf="seInicioSesion"><a routerLink="/seguridad/cerrarSesion">Cerrar Sesión</a></li>
+  <li *ngIf="seInicioSesion"><a routerLink="/seguridad/inicio-sesion">Clientes</a></li>
+  <li *ngIf=""><a routerLink="/seguridad/cerrarSesion">Cerrar Sesión</a></li>
+  
 </ul>
