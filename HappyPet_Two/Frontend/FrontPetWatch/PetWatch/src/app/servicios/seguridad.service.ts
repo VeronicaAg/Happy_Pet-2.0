@@ -40,6 +40,17 @@ export class SeguridadService {
     })
   }
 
+  IdentificacionCliente(usuario: string, clave: string): Observable<ModeloIdentificar> {
+    return this.http.post<ModeloIdentificar>(`${this.url}/identificarCliente`, {
+      usuario: usuario,
+      clave: clave
+    }, {
+      headers: new HttpHeaders({
+
+      })
+    })
+  }
+
   AlmacenarSesion(datos: ModeloIdentificar){
     datos.estaIdentificado = true;
     let stringDatos = JSON.stringify(datos);

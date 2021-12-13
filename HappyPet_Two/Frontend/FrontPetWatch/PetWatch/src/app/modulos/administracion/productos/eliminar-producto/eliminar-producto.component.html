@@ -1,1 +1,28 @@
-<p>eliminar-producto works!</p>
+<h2 class="center-align">Seguro que desea eliminar el siguiente producto:</h2>
+<div  class="row">
+    <article  class="col s6 offset-s3">
+        <form [formGroup]="fgValidador" (ngSubmit)="DeleteProducto()" action="formulario-contacto.php" method="POST">
+            <input type="hidden" formControlName="idProducto">
+            <div class="input-field">
+                <label for="nombreProducto" class="active">Nombre del Producto</label>
+                <input formControlName="nombreProducto" type="text" name="nombreProducto" readonly>
+            </div>
+            <div class="input-field">
+                <label for="descripcionProducto" class="active">Descripción</label>
+                <input formControlName="descripcionProducto" type="text" name="descripcionProducto" readonly>
+            </div>
+            <div class="input-field">
+                <label for="precioProducto" class="active">Precio</label>
+                <input formControlName="precioProducto" type="text" name="precioProducto" readonly>
+            </div>
+            <div class="input-field">
+                <label for="proveedores" class="active">Proveedor</label>
+                <input formControlName="proveedores" type="text" name="proveedores" readonly>
+            </div>
+            <p class="center-align">
+                <button style="margin: 10px" class="waves-effect waves-light btn" type="submit"><i class="material-icons right">delete</i>Eliminar</button>
+                <a  routerLink="/administracion/listar-planes" class="btn"><i class="material-icons right ">cancel</i>Cancelar</a>
+            </p>
+        </form>
+    </article>
+</div>

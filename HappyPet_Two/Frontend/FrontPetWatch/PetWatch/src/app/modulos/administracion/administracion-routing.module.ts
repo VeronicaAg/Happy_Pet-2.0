@@ -7,9 +7,11 @@ import { EliminarFuncionarioComponent } from './funcionarios/eliminar-funcionari
 import { BuscarPlanComponent } from './planes/buscar-plan/buscar-plan.component';
 import { CrearPlanComponent } from './planes/crear-plan/crear-plan.component';
 import { EditarPlanComponent } from './planes/editar-plan/editar-plan.component';
+import { EliminarPlanComponent } from './planes/eliminar-plan/eliminar-plan.component';
 import { BuscarProductoComponent } from './productos/buscar-producto/buscar-producto.component';
 import { CrearProductoComponent } from './productos/crear-producto/crear-producto.component';
 import { EditarProductoComponent } from './productos/editar-producto/editar-producto.component';
+import { EliminarProductoComponent } from './productos/eliminar-producto/eliminar-producto.component';
 
 const routes: Routes = [
   {
@@ -53,6 +55,11 @@ const routes: Routes = [
     // canActivate: [ValidadorSesionGuard]
   },
   {
+    path: 'eliminar-producto/:idProducto',
+    component: EliminarProductoComponent,
+    // canActivate: [ValidadorSesionGuard]
+  },
+  {
     path: 'crear-plan',
     component: CrearPlanComponent,
     // canActivate: [ValidadorSesionGuard]
@@ -61,7 +68,13 @@ const routes: Routes = [
     path: 'editar-plan/:idPlan',
     component: EditarPlanComponent,
     // canActivate: [ValidadorSesionGuard]
+  },
+  {
+    path: 'eliminar-plan/:idPlan',
+    component: EliminarPlanComponent,
+    // canActivate: [ValidadorSesionGuard]
   }
+
 ];
 
 @NgModule({
